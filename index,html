@@ -1,0 +1,7 @@
+<h1>Jeff's IMDB Search</h1>
+<input id="title"/>
+<button id="do-search">Search</button>
+<div id="container"></div>
+
+<SCRIPT src="jquery-3.3.1.js"></SCRIPT>
+<SCRIPT src="searchImdb.js"></SCRIPT>
