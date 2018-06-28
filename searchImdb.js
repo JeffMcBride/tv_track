@@ -39,8 +39,18 @@ function displayFullList(lst) {
             url: iURL,
             dataType: 'json',
             success: (function (result) {
-				currentResult = 'Title: ' + result.Title + '<br>Written By: ' + result.Writer + '<br>'
-				container.append(currentResult);
+				currentResult = 'Title: ' + result.Title + '<br>Written By: ' + result.Writer + '<br><br><br><br><br><br>'
+				//container.append(currentResult);
+				
+                var titleDiv = document.createElement("div");
+                titleDiv.className = result.Title;
+                titleDiv.innerHTML = currentResult
+	
+			    titleDiv.onclick = function(){alert(result.imdbID)};
+				container.append(titleDiv);
+
+
+	
 				
             }),
             error: function (error) {
@@ -48,4 +58,6 @@ function displayFullList(lst) {
             }
         });
     }
+	console.log(container)
 }
+
