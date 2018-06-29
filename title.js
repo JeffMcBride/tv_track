@@ -1,5 +1,39 @@
 //Page for show/Movie
-function pullShow(id) {
+
+var id = window.location.hash.substring(1, 10);
+var type = window.location.hash.substring(10);
+getTitleByType(type, id);
+
+function getTitleByType(type, id){
+	if (type == "series"){
+		getShow(id);
+	}
+	else if (type == "movie"){
+		getMovie(id);
+	}
+}
+
+function getMovie(id){
+	var title = $('#title');
+    var epURL = "http://www.omdbapi.com/?i=" + id + "&plot=long&apikey=9af0ac15"
+	$.ajax({
+		method: 'GET',
+		async: false,
+		url: epURL,
+		dataType: 'json',
+		//Get each episode
+		success: (function (result) {
+			var movieText = "Title: " + result.Title + "</br>Plot: " + result.Plot + "</br></br>" 
+			console.log(result);
+			title.append(movieText)
+		}),
+		error: function (error) {
+			console.error('@ERROR', error);
+		}
+	});
+}
+
+function getShow(id) {
 	var title = $('#title');
     var iURL = "http://www.omdbapi.com/?i=" + id + "&apikey=9af0ac15"
     $.ajax({
@@ -31,9 +65,8 @@ function pullShow(id) {
                                 dataType: 'json',
                                 //Get each episode
                                 success: (function (epResult) {
-								
 									var episodeText = "Season: " + epResult.Season + " Episode " + epResult.Episode + "</br>Title: " + epResult.Title + " " + epResult.Released + "</br></br>" 
-                                   // console.log(epResult);
+                                   //console.log(epResult);
 									title.append(episodeText)
 
                                 }),
@@ -58,7 +91,5 @@ function pullShow(id) {
 
 
 }
-var id = window.location.hash.substring(1)
-pullShow(id)
 
 

@@ -42,11 +42,12 @@ function displayFullList(lst) {
 				currentResult = 'Title: ' + result.Title + '<br>Written By: ' + result.Writer + '<br><br><br><br><br><br>'
 				//container.append(currentResult);
 				var id = result.imdbID;
+				var type = result.Type
                 var titleDiv = document.createElement("div");
                 titleDiv.className = result.Title;
                 titleDiv.innerHTML = currentResult
 	
-			    titleDiv.onclick = function(){goToTitle(id)};
+			    titleDiv.onclick = function(){goToTitle(id, type)};
 				container.append(titleDiv);
 
 
@@ -61,8 +62,8 @@ function displayFullList(lst) {
 	console.log(container)
 }
 
-function goToTitle(id){
-window.location.href = 'title.html#' + id
+function goToTitle(id, type){
+window.location.href = 'title.html#' + id + type
 }
 
 
